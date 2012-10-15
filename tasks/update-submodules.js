@@ -1,5 +1,5 @@
 module.exports = function( grunt ) {
-	grunt.registerTask( "update-submodules", function() {
+	grunt.registerTask( "update_submodules", function() {
 		var done = this.async(),
 			cp = require("child_process");
 		grunt.verbose.writeln( "Updating submodules..." );
