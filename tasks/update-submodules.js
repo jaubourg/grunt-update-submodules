@@ -1,21 +1,26 @@
 module.exports = function( grunt ) {
 	grunt.registerTask( "update_submodules", function() {
-		var done = this.async(),
-			cp = require("child_process");
+		var done = this.async();
 		grunt.verbose.writeln( "Updating submodules..." );
-		cp.exec( "git submodule", function( err, stdout, stderr ) {
-			if ( err || stderr ) {
-				grunt.verbose.error( err || stderr );
-				done( err || stderr );
+		grunt.utils.spawn({
+			cmd: "git",
+			args: [ "submodule" ]
+		}, function( error, result ) {
+			if ( error ) {
+				grunt.verbose.error( error );
+				done( error );
 				return;
 			}
-			var cmd = "git submodule update --init --recursive" +
-					( /(?:^|\n)-/.test( stdout ) ? "" : " --merge" );
-			grunt.verbose.writeln( cmd );
-			cp.exec( cmd, function( err, stdout, stderr ) {
-				if ( err || stderr ) {
-					grunt.verbose.error( err || stderr );
-					done( err || stderr );
+			var args = "submodule update --init --recursive" +
+					( /(?:^|\n)-/.test( result ) ? "" : " --merge" );
+			grunt.verbose.writeln( "git " + args );
+			grunt.utils.spawn({
+				cmd: "git",
+				args: args.split(" ")
+			}, function( error ) {
+				if ( error ) {
+					grunt.verbose.error( error );
+					done( error );
 					return;
 				}
 				done();
