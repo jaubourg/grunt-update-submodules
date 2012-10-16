@@ -5,7 +5,7 @@ module.exports = function( grunt ) {
 		grunt.verbose.writeln( "Updating submodules..." );
 		cp.exec( "git submodule", function( err, stdout, stderr ) {
 			if ( err || stderr ) {
-				grunt.verbose.error();
+				grunt.verbose.error( err || stderr );
 				done( err || stderr );
 				return;
 			}
@@ -14,7 +14,7 @@ module.exports = function( grunt ) {
 			grunt.verbose.writeln( cmd );
 			cp.exec( cmd, function( err, stdout, stderr ) {
 				if ( err || stderr ) {
-					grunt.verbose.error();
+					grunt.verbose.error( err || stderr );
 					done( err || stderr );
 					return;
 				}
