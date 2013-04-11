@@ -4,16 +4,17 @@ Updates git submodules
 
 ## Getting Started
 
-Add this to your project's `Gruntfile.js` gruntfile:
+Add to `Gruntfile.js`:
 ```javascript
 task.loadNpmTasks('grunt-update-submodules');
 ```
 
-Then add "grunt-update-submodules" to your package.json dependencies.
+Install and add to dependencies:
+```
+npm install grunt-update-submodules --save-dev
+```
 
-Then install the plugin with: `npm install`
-
-The name to use in your own task definitions is `update_submodules` (with an underscore).
+Use `update_submodules` in task your definitions!
 
 ## License
 Copyright (c) 2012 Julian Aubourg <j@ubourg.net>
