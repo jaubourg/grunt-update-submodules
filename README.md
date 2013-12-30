@@ -14,7 +14,7 @@ Install and add to dependencies:
 npm install grunt-update-submodules --save-dev
 ```
 
-Use `update_submodules` in task your definitions!
+Use `update_submodules` in your task definitions!
 
 ## License
 Copyright (c) 2012 Julian Aubourg <j@ubourg.net>
