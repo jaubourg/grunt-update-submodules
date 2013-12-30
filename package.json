@@ -23,10 +23,10 @@
 		"node": "*"
 	},
 	"dependencies": {
-		"grunt": "~0.4.0rc3"
+		"grunt": "~0.4.2"
 	},
 	"devDependencies": {
-		"grunt": "~0.4.0rc3",
+		"grunt": "~0.4.2",
 		"grunt-contrib-jshint": "~0.1.0"
 	},
 	"keywords": [
