@@ -1,7 +1,7 @@
 {
 	"name": "grunt-update-submodules",
 	"description": "Updates git submodules",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"homepage": "https://github.com/jaubourg/grunt-update-submodules",
 	"author": "Julian Aubourg <j@ubourg.net>",
 	"repository": {
