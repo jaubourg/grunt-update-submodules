@@ -1,18 +1,29 @@
 "use strict";
 
-module.exports = function(grunt) {
+module.exports = function( grunt ) {
 
-	grunt.initConfig({
+	var lintTargets = [ "Gruntfile.js", "lib/**/*.js", "tasks/**/*.js", "test/**/*.js" ];
+
+	grunt.initConfig( {
+		jscs: {
+			files: lintTargets
+		},
 		jshint: {
-			files: [ "Gruntfile.js", "tasks/**/*.js" ],
+			files: lintTargets,
 			options: {
-				jshintrc: ".jshintrc"
+				jshintrc: ".jshint.json"
 			}
+		},
+		nodeunit: {
+			tests: [ "test/*.js" ]
 		}
-	});
+	} );
 
-	// Default task.
-	grunt.registerTask("default", "jshint");
-	grunt.loadNpmTasks("grunt-contrib-jshint");
-	grunt.loadTasks("tasks");
+	// load npm modules
+	require( "load-grunt-tasks" )( grunt );
+
+	// Tasks
+	grunt.registerTask( "lint", [ "jscs", "jshint" ] );
+	grunt.registerTask( "default", [ "lint", "nodeunit" ] );
+
 };
