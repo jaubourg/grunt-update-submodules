@@ -149,6 +149,64 @@ module.exports = {
 			} );
 
 		} );
+	},
+
+	"test with custom git args": function( _ ) {
+
+		_.expect( 1 );
+
+		var expectedCommand = "\ngit submodule update --force";
+
+		createGitDir( "customGitArgs", [ {
+
+			folder: "grunt-update-submodules",
+			url: "https://github.com/jaubourg/grunt-update-submodules.git"
+
+		}, {
+
+			folder: "jquery-deferred-for-node",
+			url: "https://github.com/jaubourg/jquery-deferred-for-node.git"
+
+		} ], function( done ) {
+
+			exec( "grunt withArgs --verbose --no-color", function( stdout ) {
+
+				_.ok( stdout.indexOf( expectedCommand + "\n" ) > 0, "Command with custom git arguments" );
+
+				done();
+				_.done();
+			} );
+
+		} );
+	},
+
+	"test with blank git args": function( _ ) {
+
+		_.expect( 1 );
+
+		var expectedCommand = "\ngit submodule update";
+
+		createGitDir( "blankArgs", [ {
+
+			folder: "grunt-update-submodules",
+			url: "https://github.com/jaubourg/grunt-update-submodules.git"
+
+		}, {
+
+			folder: "jquery-deferred-for-node",
+			url: "https://github.com/jaubourg/jquery-deferred-for-node.git"
+
+		} ], function( done ) {
+
+			exec( "grunt blankArgs --verbose --no-color", function( stdout ) {
+
+				_.ok( stdout.indexOf( expectedCommand + "\n" ) > 0, "Command with custom git arguments" );
+
+				done();
+				_.done();
+			} );
+
+		} );
 	}
 
 };
