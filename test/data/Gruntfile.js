@@ -6,17 +6,17 @@ module.exports = function( grunt ) {
 		"update_submodules": {
 			default: {
 				options: {
-					// gitArgs: undefined // really commented to have this undefined
+					// default command line parameters will be used: --init --recursive
 				}
 			},
-			withCustomArgs: {
+			withCustomParameters: {
 				options: {
-					gitArgs: "--force"
+					params: "--force" // specifies your own command-line parameters
 				}
 			},
-			withBlankArgs: {
+			withNoParameter: {
 				options: {
-					gitArgs: null
+					params: false // blanks command-line parameters
 				}
 			}
 		}
@@ -26,6 +26,6 @@ module.exports = function( grunt ) {
 	grunt.loadTasks( "../../tasks" );
 
 	grunt.registerTask( "default", "update_submodules" );
-	grunt.registerTask( "withArgs", "update_submodules:withCustomArgs" );
-	grunt.registerTask( "blankArgs", "update_submodules:withBlankArgs" );
+	grunt.registerTask( "withCustomParameters", "update_submodules:withCustomParameters" );
+	grunt.registerTask( "withNoParameter", "update_submodules:withNoParameter" );
 };

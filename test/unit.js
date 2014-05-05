@@ -151,13 +151,13 @@ module.exports = {
 		} );
 	},
 
-	"test with custom git args": function( _ ) {
+	"test with custom parameters": function( _ ) {
 
 		_.expect( 1 );
 
 		var expectedCommand = "\ngit submodule update --force";
 
-		createGitDir( "customGitArgs", [ {
+		createGitDir( "withCustomParameters", [ {
 
 			folder: "grunt-update-submodules",
 			url: "https://github.com/jaubourg/grunt-update-submodules.git"
@@ -169,9 +169,9 @@ module.exports = {
 
 		} ], function( done ) {
 
-			exec( "grunt withArgs --verbose --no-color", function( stdout ) {
+			exec( "grunt withCustomParameters --verbose --no-color", function( stdout ) {
 
-				_.ok( stdout.indexOf( expectedCommand + "\n" ) > 0, "Command with custom git arguments" );
+				_.ok( stdout.indexOf( expectedCommand + "\n" ) > 0, "Command with custom parameters" );
 
 				done();
 				_.done();
@@ -180,13 +180,13 @@ module.exports = {
 		} );
 	},
 
-	"test with blank git args": function( _ ) {
+	"test with no parameter": function( _ ) {
 
 		_.expect( 1 );
 
 		var expectedCommand = "\ngit submodule update";
 
-		createGitDir( "blankArgs", [ {
+		createGitDir( "withNoParameter", [ {
 
 			folder: "grunt-update-submodules",
 			url: "https://github.com/jaubourg/grunt-update-submodules.git"
@@ -198,9 +198,9 @@ module.exports = {
 
 		} ], function( done ) {
 
-			exec( "grunt blankArgs --verbose --no-color", function( stdout ) {
+			exec( "grunt withNoParameter --verbose --no-color", function( stdout ) {
 
-				_.ok( stdout.indexOf( expectedCommand + "\n" ) > 0, "Command with custom git arguments" );
+				_.ok( stdout.indexOf( expectedCommand + "\n" ) > 0, "Command with no parameter" );
 
 				done();
 				_.done();
