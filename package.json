@@ -20,7 +20,7 @@
 	"main": "Gruntfile.js",
 	"bin": "bin/grunt-update-submodules",
 	"engines": {
-		"node": "*"
+		"node": ">= 0.10.0"
 	},
 	"dependencies": {
 		"grunt": "0.4.4"
