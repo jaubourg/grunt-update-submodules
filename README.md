@@ -1,47 +1,42 @@
 # grunt-update-submodules
+> [Grunt](http://gruntjs.com/) task to update git submodules.
 
-Updates git submodules
+[![NPM version](https://badge.fury.io/js/grunt-update-submodules.svg)](http://badge.fury.io/js/grunt-update-submodules)
+[![Build Status](https://travis-ci.org/jaubourg/grunt-update-submodules.svg?branch=master)](https://travis-ci.org/jaubourg/grunt-update-submodules)
+[![Dependency Status](https://david-dm.org/jaubourg/grunt-update-submodules.svg)](https://david-dm.org/jaubourg/grunt-update-submodules)
+[![devDependency Status](https://david-dm.org/jaubourg/grunt-update-submodules/dev-status.svg)](https://david-dm.org/jaubourg/grunt-update-submodules#info=devDependencies)
+[![Gittip](https://img.shields.io/gittip/jaubourg.svg)](https://www.gittip.com/jaubourg/)
 
-## Getting Started
+## Installing
 
-Add to `Gruntfile.js`:
+Install and add to dependencies.
+```sh
+npm install grunt-update-submodules --save-dev
+```
+
+Load the task in `Gruntfile.js`.
 ```javascript
 task.loadNpmTasks( "grunt-update-submodules" );
 ```
 
-Install and add to dependencies:
-```
-npm install grunt-update-submodules --save-dev
-```
+## Usage
 
-Use `update_submodules` and initialize it:
-###Basic Initialization
 ```javascript
 grunt.initConfig({
 	"update_submodules": {
 		default: {
 			options: {
-				// don't specify a gitArgs so the default arguments will be used: git submodule update --init --recursive
-			}
-		}
-	}
-});
-```
-
-###Custom/Blank Arguments
-You can have your own custom `git submodule update` arguments by defining the `gitArgs` option in your task target.
-e.g.
-```javascript
-grunt.initConfig({
-	"update_submodules": {
-		withCustomArgs: {
-			options: {
-				gitArgs: "--force" // specify your own git arguments
+				// default command line parameters will be used: --init --recursive
 			}
 		},
-		withBlankArgs: {
+		withCustomParameters: {
 			options: {
-				gitArgs: null // using null or '' will result to blank git arguments
+				params: "--force" // specifies your own command-line parameters
+			}
+		},
+		withNoParameter: {
+			options: {
+				params: false // blanks command-line parameters
 			}
 		}
 	}
@@ -49,5 +44,6 @@ grunt.initConfig({
 ```
 
 ## License
-Copyright (c) 2012 - 2014 Julian Aubourg <j@ubourg.net>
-Licensed under the MIT license.
+
+Copyright (c) 2012 - 2014 [Julian Aubourg](mailto:j@ubourg.net)
+Licensed under the [MIT license](https://raw.githubusercontent.com/jaubourg/grunt-update-submodules/master/LICENSE-MIT).
