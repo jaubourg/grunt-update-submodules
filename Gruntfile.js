@@ -6,7 +6,10 @@ module.exports = function( grunt ) {
 
 	grunt.initConfig( {
 		jscs: {
-			files: lintTargets
+			files: lintTargets,
+			options: {
+				config: ".jscs.json"
+			}
 		},
 		jshint: {
 			files: lintTargets,
