@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/jaubourg/grunt-update-submodules.svg?branch=master)](https://travis-ci.org/jaubourg/grunt-update-submodules)
 [![Coverage Status](https://img.shields.io/coveralls/jaubourg/grunt-update-submodules.svg)](https://coveralls.io/r/jaubourg/grunt-update-submodules)
-[![Dependency Status](https://gemnasium.com/jaubourg/grunt-update-submodules.svg)](https://gemnasium.com/jaubourg/grunt-update-submodules)
+[![Dependency Status](https://david-dm.org/jaubourg/grunt-update-submodules.svg)](https://david-dm.org/jaubourg/grunt-update-submodules)
+[![devDependency Status](https://david-dm.org/jaubourg/grunt-update-submodules/dev-status.svg)](https://david-dm.org/jaubourg/grunt-update-submodules#info=devDependencies)
 [![Gittip](https://img.shields.io/gittip/jaubourg.svg)](https://www.gittip.com/jaubourg/)
 
 # grunt-update-submodules
