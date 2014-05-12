@@ -21,6 +21,55 @@ var exec = ( function() {
 
 } )();
 
+var execGruntTask = ( function() {
+
+	var grunt = require( "grunt" );
+
+	grunt.task.init = function() {};
+
+	grunt.initConfig( {
+		"update_submodules": {
+			default: {
+				options: {
+					// default command line parameters will be used: --init --recursive
+				}
+			},
+			withCustomParameters: {
+				options: {
+					params: "--force" // specifies your own command-line parameters
+				}
+			},
+			withNoParameter: {
+				options: {
+					params: false // blanks command-line parameters
+				}
+			}
+		}
+	} );
+
+	// Load tasks
+	grunt.loadTasks( path.resolve( __dirname, "../tasks" ) );
+
+	//grunt.registerTask( "default", "update_submodules" );
+	//grunt.registerTask( "withCustomParameters", "update_submodules:withCustomParameters" );
+	//grunt.registerTask( "withNoParameter", "update_submodules:withNoParameter" );
+
+	return function( task, callback ) {
+		var stdout = "";
+		var oldWrite = process.stdout.write;
+		process.stdout.write = function( string ) {
+			stdout += string;
+		};
+		grunt.tasks( [ task ], {
+			verbose: true,
+			color: false
+		}, function() {
+			process.stdout.write = oldWrite;
+			callback( stdout );
+		} );
+	};
+} )();
+
 function createGitDir( dir, submodules, test ) {
 
 	var wrench = require( "wrench" );
@@ -28,7 +77,7 @@ function createGitDir( dir, submodules, test ) {
 	dir = path.resolve( __dirname, dir );
 
 	wrench.rmdirSyncRecursive( dir, true );
-	wrench.copyDirSyncRecursive( path.resolve( __dirname, "data" ), dir );
+	wrench.mkdirSyncRecursive( dir );
 
 	var oldDir = process.cwd();
 	process.chdir( dir );
@@ -83,11 +132,11 @@ module.exports = {
 
 		} ], function( done ) {
 
-			exec( "grunt --verbose --no-color", function( stdout ) {
+			execGruntTask( "update_submodules", function( stdout ) {
 
 				_.ok( stdout.indexOf( expectedCommand + "\n" ) > 0, "Command with no merge" );
 
-				exec( "grunt --verbose --no-color", function( stdout ) {
+				execGruntTask( "update_submodules", function( stdout ) {
 
 					_.ok( stdout.indexOf( expectedCommand + " --merge\n" ) > 0, "Command with merge" );
 
@@ -123,11 +172,11 @@ module.exports = {
 
 		} ], function( done ) {
 
-			exec( "grunt --verbose --no-color", function( stdout ) {
+			execGruntTask( "update_submodules", function( stdout ) {
 
 				_.ok( stdout.indexOf( expectedCommand + "\n" ) > 0, "Command with no merge" );
 
-				exec( "grunt --verbose --no-color", function( stdout ) {
+				execGruntTask( "update_submodules", function( stdout ) {
 
 					_.ok( stdout.indexOf( expectedCommand + " --merge\n" ) > 0, "Command with merge" );
 
@@ -169,7 +218,7 @@ module.exports = {
 
 		} ], function( done ) {
 
-			exec( "grunt withCustomParameters --verbose --no-color", function( stdout ) {
+			execGruntTask( "update_submodules:withCustomParameters", function( stdout ) {
 
 				_.ok( stdout.indexOf( expectedCommand + "\n" ) > 0, "Command with custom parameters" );
 
@@ -198,7 +247,7 @@ module.exports = {
 
 		} ], function( done ) {
 
-			exec( "grunt withNoParameter --verbose --no-color", function( stdout ) {
+			execGruntTask( "update_submodules:withNoParameter", function( stdout ) {
 
 				_.ok( stdout.indexOf( expectedCommand + "\n" ) > 0, "Command with no parameter" );
 
