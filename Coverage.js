@@ -54,6 +54,13 @@ module.exports = function( grunt ) {
 	} );
 
 	// Tasks
-	grunt.registerTask( "default", [ "jscoverage", "switch-lib", "shell:nodeunit", "lib-back", "shell:coveralls", "cleanup" ] );
+	grunt.registerTask( "default", [
+		"jscoverage",
+		"switch-lib",
+		"shell:nodeunit",
+		"lib-back",
+		"shell:coveralls",
+		"cleanup"
+	] );
 
 };
