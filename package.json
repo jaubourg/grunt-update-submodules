@@ -25,6 +25,7 @@
 	"dependencies": {
 	},
 	"devDependencies": {
+		"coveralls": "2.10.0",
 		"grunt": "0.4.4",
 		"grunt-contrib-jshint": "0.10.0",
 		"grunt-jscoverage": "0.1.0",
